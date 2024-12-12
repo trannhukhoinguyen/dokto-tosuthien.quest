@@ -1,8 +1,58 @@
 ---
 import Card from "@components/base/Card.astro";
+import sectDb from "../../../../db/sectDb.tsx";
 ---
 
 <div class="grid md:grid-cols-3 ltablet:grid-cols-3 lg:grid-cols-3 gap-x-6 ptablet:gap-x-4 gap-y-16 pt-10">
+  {
+    sectDb?.map(sect =>   <div>
+      <Card class="'p-4'">
+        <div
+            class="relative w-full h-40 rounded-lg bg-muted-200 dark:bg-muted-800"
+        >
+          <img
+              class="absolute bottom-0 inset-x-0 mx-auto w-full max-w-[170px] ptablet:max-w-[150px]"
+              src={sect.logo}
+              alt="sect"
+          />
+        </div>
+        <div class="font-sans mt-3">
+          <h4 class="font-semibold text-muted-800 dark:text-muted-100">{sect.founder}</h4>
+          <p class="text-sm text-muted-400">{sect.label}</p>
+        </div>
+        <div class="mt-2">
+          <p class="text-sm ptablet:text-xs text-muted-500 dark:text-muted-400">{sect.history}</p>
+        </div>
+        <div class="flex items-center justify-between font-sans mt-3">
+          <div class="flex items-center gap-2">
+            <button
+                tooltip="Book appointment"
+                class="h-8 w-8 rounded-full text-muted-400 hover:text-primary-500 hover:enabled:bg-muted-100 dark:hover:enabled:bg-muted-800 flex items-center justify-center tw-accessiblity transition-colors duration-300"
+            >
+              <iconify-icon class="iconify w-4 h-4" icon="ph:calendar-check-duotone"></iconify-icon>
+            </button>
+            <button
+                tooltip="Send message"
+                class="h-8 w-8 rounded-full text-muted-400 hover:text-primary-500 hover:enabled:bg-muted-100 dark:hover:enabled:bg-muted-800 flex items-center justify-center tw-accessiblity transition-colors duration-300"
+            >
+              <iconify-icon class="iconify w-4 h-4" icon="ph:chat-circle-duotone"></iconify-icon>
+            </button>
+            <button
+                tooltip="View profile"
+                class="h-8 w-8 rounded-full text-muted-400 hover:text-primary-500 hover:enabled:bg-muted-100 dark:hover:enabled:bg-muted-800 flex items-center justify-center tw-accessiblity transition-colors duration-300"
+            >
+              <iconify-icon class="iconify w-4 h-4" icon="ph:user-duotone"></iconify-icon>
+            </button>
+          </div>
+          <div class="flex items-center justify-end gap-2">
+            <iconify-icon class="iconify w-4 h-4 text-yellow-400" icon="uiw:star-on"></iconify-icon>
+            <span class="font-semibold text-xs text-muted-500 dark:text-muted-400">{sect.relation}</span>
+          </div>
+        </div>
+      </Card>
+    </div>)
+  }
+  <!--
   <div x-show="activeCategory === 'all' || activeCategory === 'cardiology'">
     <Card class="'p-4'">
       <div
@@ -56,7 +106,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'gynaecology'">
     <Card class="'p-4'">
       <div
@@ -110,7 +160,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'neurology'">
     <Card class="'p-4'">
       <div
@@ -164,7 +214,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'dermatology'">
     <Card class="'p-4'">
       <div
@@ -218,7 +268,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'general'">
     <Card class="'p-4'">
       <div
@@ -272,7 +322,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'surgery'">
     <Card class="'p-4'">
       <div
@@ -326,7 +376,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'gynaecology'">
     <Card class="'p-4'">
       <div
@@ -380,7 +430,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'cardiology'">
     <Card class="'p-4'">
       <div
@@ -434,7 +484,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'general'">
     <Card class="'p-4'">
       <div
@@ -488,7 +538,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'general'">
     <Card class="'p-4'">
       <div
@@ -542,7 +592,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'surgery'">
     <Card class="'p-4'">
       <div
@@ -596,7 +646,7 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
-  <!-- Doctor -->
+
   <div x-show="activeCategory === 'all' || activeCategory === 'dermatology'">
     <Card class="'p-4'">
       <div
@@ -650,4 +700,5 @@ import Card from "@components/base/Card.astro";
       </div>
     </Card>
   </div>
+-->
 </div>
